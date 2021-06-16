@@ -17,11 +17,39 @@ function Player (name, turnScore, gameScore) {
   this.gameScore = gameScore; 
 }
 
-//Dice roller function
-let min = 1;
-let max = 6;
-let dice = Math.floor(Math.random()*(max-min+1)+min); 
-console.log(dice);
+function diceRoller() {
+  let min = 1;
+  let max = 6;
+  let dice = Math.floor(Math.random()*(max-min+1)+min); 
+  console.log(dice);
+}
+
+function addScore() {
+  let playerScore = 0;
+  let dice = diceRoller();
+  console.log(dice);
+  console.log(playerScore);
+  if (dice !== 1) { 
+  playerScore + dice; // playerScore = playerScore + dice 
+  console.log(playerScore)  
+  }} addScore()
+  
+  
+  
+  else { 
+    playerScore = 0
+  }
+  console.log(playerScore) 
+};
+
+
+  }
+  
+  else if  
+ else playerScore = 0
+
+
+let player1 = newPlayer ("", )
 player1 =0 
 player2 =0
 string = ""
@@ -72,15 +100,3 @@ $(document).ready(function() {
     
   });
 });
-
-
-
-
-
-
-function diceRoller() {
-  let min = 1;
-  let max = 6;
-  let dice = Math.floor(Math.random()*(max-min+1)+min); 
-  console.log(dice);
-}
