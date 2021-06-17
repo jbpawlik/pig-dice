@@ -25,32 +25,39 @@
 //   this.players[player.name] = player
 // }
 
-
-function Player (turnScore, gameScore, diceValue, playerTurn) {
+//constructor for player
+function Player (name, turnScore, gameScore, diceValue, playerTurn) {
+  this.name = name;
   this.turnScore = turnScore;
   this.gameScore = gameScore; 
   this.diceValue = diceValue;
   this.playerTurn = playerTurn;
 }
+//constructors for each player  
+let player1 = new Player("carnitas", diceRoll, turnScore, gameScore);
+let player2 = new Player("al pastor", diceRoll, turnScore, gameScore); 
 
+//this is a custom method- so any time a 'player' clicks submit, the random number 1 - 6 will generate 
 Player.prototype.randomDiceRoller = function() {
   this.diceValue = Math.floor(Math.random()*(6)+1);
 }
+//this is a custom method- so after the 1 -6 number is generated the value will run through our branching to determine how much is added to gameScoreTotal and/or if its the next player's turn
 Player.prototype.turnScoreValue = function () {
   if (this.diceValue === 1) {
-    this.turnScore = 0
+    this.turnScore = 0 // && switch player somehow?- just trying to find a way to refactor - Erika
   }else {
     this.turnScore = this.diceValue
   }
   
 }
+//this is a custom method- so after the turnScore is added to the gameScore the gameScore value will run through our branching to determine if the game is over aka. score reach 100 
 Player.prototype.gameScoreTotal = function () {
   this.gameScore += this.turnScore
   if (this.gameScore >= 100) {
     alert ("You win!")
   }
 }
-
+//this is a custom method- can we merge this prototype with turnScoreValueabove? line45 -Erika
 Player.prototype.yourTurn = function () {
   if (this.playerTurn === True) {
     this.playerTurn = False
@@ -58,17 +65,13 @@ Player.prototype.yourTurn = function () {
     this.playerTurn = True
   }
 }
+//this is a custom method- so any time a 'player' clicks "hold", their turn will end
+Player.prototype.hold = function() {
+  //switch player somehow
 
-// PigDice.prototype.switchPlayer = function ()
-// if (this.players)
-
-// function diceRoller() {
-//   let min = 1;
-//   let max = 6;
-//   let dice = Math.floor(Math.random()*(max-min+1)+min);
-// }
-
+}
 //A dice rolling function
+//Do we need a dice rolling function if we already have a prototype for randomDiceRoller? Line 41 -Erika
 function diceRoller() {
   this.turnScore = 0;
   let min = 1;
@@ -93,20 +96,7 @@ function addScore() {
 }} addScore()
 
 
-function hold() {
-  player1.gameScore += turnScore 
-  player2.gameScore += turnScore
-  turnScore = 0   
-  nextPlayer = 0 
-}
-  
-let player1 = new Player(diceRoll, turnScore, gameScore);
-let player2 = new Player(diceRoll, turnScore, gameScore); 
 
-let player1 = newPlayer ("", )
-player1 =0 
-player2 =0
-string = ""
 
 
 // addScore function per player??
@@ -155,7 +145,7 @@ function showBtnSecondary(playerId){
   buttons.append("<button ='btn btn-secondary' id=" + + playerId + ">Hold</button>")}
 
 
-
+//'this' refers to "button" before the '.'
 function attachHoldListeners(){
 $(button.btn-secondary).on("click", "button", function() {
   showBtnSecondary(this.id);
@@ -174,7 +164,7 @@ $("#buttons").on("click", ".")
 
 $(document).ready(function() {
   attachSubmitListeners();
-  //attachHoldListeners();
+  attachHoldListeners();
   $("button#submit").click(function(event){
     event.preventDefault();
     if (player1.playerTurn === True) {
