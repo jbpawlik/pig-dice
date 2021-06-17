@@ -71,6 +71,22 @@ Player.prototype.addScore = function() {
 // let player2 = new Player (0,0,0, False)
 
 $(document).ready(function() {
+
+  
+  if (player1.playerWin === false && player2.playerWin === false) {
+    if (player1.playerTurn === true) {
+      player1.gameScore += player1.turnScore;
+      $("#player1GameScore").text(player1.gameScore)
+      player1.playerTurn = false;
+      player2.playerTurn = true;
+    } else if (player2.playerTurn === true) {
+      player2.gameScore += player2.turnScore;
+      $("#player2GameScore").text(player2.gameScore)
+      player2.playerTurn = false;
+      player1.playerTurn = true;
+    }
+  }
+
   $("button#submit").click(function(event){
     event.preventDefault();
     if (player1.playerTurn === true) {
@@ -87,32 +103,71 @@ $(document).ready(function() {
       if (player2.turnScore === 0) {
         player2.playerTurn = false;
         player1.playerTurn = true;
-      }
+      } 
+    }
+    });
+
+    // $("#player1Score").text(player1.turnScore)
+    
+    // $("#player1GameScore").text(player1.gameScore)
+    // $("#player2GameScore").text(player2.gameScore)
+
+    $("button#hold").click(function(event) {
+      event.preventDefault(); 
+      if (this.gameScore >= 100) {
+      this.playerWin = true;}
+
+      if (player1.playerWin === false && player2.playerWin === false) {
+        if (player1.playerTurn === true) {
+          player1.gameScore += player1.turnScore;
+          $("#player1GameScore").text(player1.gameScore)
+          player1.playerTurn = false;
+          player2.playerTurn = true;
+        } else if (player2.playerTurn === true) {
+          player2.gameScore += player2.turnScore;
+          $("#player2GameScore").text(player2.gameScore)
+          player2.playerTurn = false;
+          player1.playerTurn = true;
+        }
+
+      // if (player1.playerTurn === true) { 
+      //   player1.gameScore += player1.turnScore;
+      //   $("#player1GameScore").text(player1.gameScore)
+      //     player1.playerTurn = false;
+      //     player2.playerTurn = true;
+      //   if (player1.gameScore >= 100) {
+      //     $('#winner1').text('You win!')
+      //     player1.playerWin = true;
+  
+      //     // break;
+      //   }
+      // } else if (player2.playerTurn === true) {
+      //     player2.gameScore += player2.turnScore;
+      //     if (player2.gameScore >= 100) {
+      //       $('#winner2').text('You win!')
+      //       player2.playerWin = true;
+      //       // break;
+        // $("#player2GameScore").text(player2.gameScore)
+        
+        
+      // } 
+      
+      // if (player1.gameScore + player1.turnScore >= 100) {
+      //   player1.gameScore += player1.turnScore;
+      //   return "Winner!";
+      // } else {
+      // player1.gameScore += player1.turnScore;
+      // }
+      // // return diceRoll;
+    
+      // if(player2.gameScore + player2.turnScore >= 100) {
+      //   player2.gameScore += player2.turnScore;
+      //   return "Winner!";
+      // }else{
+      // player2.gameScore += player2.turnScore;
+      // } 
+      //   // return diceRoll;
     }
     
-    $("#player1Score").text(player1.turnScore)
-    
-
-    $("button#hold").click(function(event){
-      event.preventDefault(); 
-      if (player1.playerTurn = true) {
-        player1.playerTurn = false
-        player2.playerTurn = true
-        player1.gameScore += player1.turnScore
-        $("#player1GameScore").text(player1.gameScore)
-      } else {
-        player2.playerTurn = false
-        player1.playerTurn = true
-        player2.gameScore += player2.turnScore
-        $("#player2GameScore").text(player2.gameScore)
-      } 
-      
-  
-        
-      // if (this.playerTurn = true) {
-      //   this.gameScore += this.turnScore;
-      //    }
-      
   });
-});
 });

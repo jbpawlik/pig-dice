@@ -1,14 +1,27 @@
+body {
+  background-image: url(/images/pig-dice.jpg);
+}
 #jumbotron {
+  background-color: bisque;
   text-align: center;
+  font-family: fantasy;
   border: 1px solid black;
   margin: 5em;
   padding: 1em;
 }
+.centered-image {
+  margin: auto;
+  width: fit-content;
+  height: auto;
+  display: block;
+}
 .col-4 {
+  background-color: bisque;
   border: 1px solid black;
   padding: 1em;
   text-align: center;
+  font-family: fantasy;
 }
-btn {
+.clickButton {
   margin: 1em;
 }

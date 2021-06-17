@@ -10,25 +10,34 @@
 <body>
   <div class="container">
     <div id="jumbotron">
-      <h1>Pork Paradice</h1>
+      <h1>Pork Para'dice'</h1>
+      <div class="centered-image"> 
+        <img src="images/pork-paradise-logo.jpg" alt="image of Pig Dice logo">
+      </div>
     </div>
     <div class="container">
       <div class= "row">
         <div class="col-4">
-          <h4>Player 1: Carnitas</h4>
+          <h4>Player 1: <em>Carnitas</em> <span class="image2"><img src="images/carnitas2.jpg" alt="image of juicy yet crispy carnitas"></span></h4>
           <p>Turn Score:<span id="player1Score"></span></p>
           <p>Game Score:<span id= "player1GameScore"></span></p>
+          <p><span id= "winner1"></span></p>
         </div>
         <div class="col-4">
-          <button type="button" class="btn btn-primary" id="submit">Roll the Dice
-          </button>
-          <button type="button" class="btn btn-secondary" id="hold">Hold</button>
-          
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <button type="button" class="clickButton" class="btn btn-primary" id="submit">Roll the Dice</button>
+          <button type="button" class="clickButton" class="btn btn-secondary" id="hold">Hold</button>
+          <input type="button" class="clickButton" value='New Game' onClick="document.location.reload(true)">
         </div>
         <div class="col-4">
-          <h4>Player 2: Al Pastor</h4>
+          <h4>Player 2: <em>Al Pastor</em><span class="image2"><img src="images/al-pastor2.jpg" alt="image of savory yet sweet al pastor"></span></h4>
           <p>Turn Score:<span id= "player2Score"></span></p>
           <p>Game Score:<span id= "player2GameScore"></span></p>
+          <p><span id= "winner2"></span></p>
         </div>
       </div>
     </div>
