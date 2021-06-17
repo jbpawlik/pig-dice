@@ -29,7 +29,7 @@ Player.prototype.addScore = function() {
   if (diceRoll !== 1) { 
       this.turnScore += diceRoll;
       return this.turnScore;
-    if (this.gameScore >= 100);
+      if (this.gameScore >= 100);
       this.playerWin = true;
   } else {
     return this.turnScore = 0;
@@ -72,7 +72,6 @@ Player.prototype.addScore = function() {
 
 $(document).ready(function() {
 
-  
   if (player1.playerWin === false && player2.playerWin === false) {
     if (player1.playerTurn === true) {
       player1.gameScore += player1.turnScore;
@@ -89,6 +88,15 @@ $(document).ready(function() {
 
   $("button#submit").click(function(event){
     event.preventDefault();
+
+    if (player1.gameScore >= 100)  {
+      player1.playerWin = true;
+      $('#winner1').text(player1.name + 'wins!')
+    } else if (player2.gameScore >= 100) {
+      player2.playerWin = true;
+      $('#winner2').text(player2.name + 'wins!')
+    }
+
     if (player1.playerTurn === true) {
       player1.addScore()
       $("#player1Score").text(player1.turnScore)
@@ -105,7 +113,7 @@ $(document).ready(function() {
         player1.playerTurn = true;
       } 
     }
-    });
+  });
 
     // $("#player1Score").text(player1.turnScore)
     
@@ -114,22 +122,27 @@ $(document).ready(function() {
 
     $("button#hold").click(function(event) {
       event.preventDefault(); 
-      if (this.gameScore >= 100) {
-      this.playerWin = true;}
-
+      if (player1.gameScore >= 100)  {
+        player1.playerWin = true;
+        $('#winner1').text(player1.name + 'wins!')
+      } else if (player2.gameScore >= 100) {
+        player2.playerWin = true;
+        $('#winner2').text(player2.name + 'wins!')
+      }
+    
       if (player1.playerWin === false && player2.playerWin === false) {
-        if (player1.playerTurn === true) {
+        if (player1.playerTurn === true && player2.playerWin === false) {
           player1.gameScore += player1.turnScore;
           $("#player1GameScore").text(player1.gameScore)
           player1.playerTurn = false;
           player2.playerTurn = true;
-        } else if (player2.playerTurn === true) {
+        } else if (player2.playerTurn === true && player1.playerWin === false) {
           player2.gameScore += player2.turnScore;
           $("#player2GameScore").text(player2.gameScore)
           player2.playerTurn = false;
           player1.playerTurn = true;
         }
-
+    
       // if (player1.playerTurn === true) { 
       //   player1.gameScore += player1.turnScore;
       //   $("#player1GameScore").text(player1.gameScore)
@@ -168,6 +181,5 @@ $(document).ready(function() {
       // } 
       //   // return diceRoll;
     }
-    
   });
 });
