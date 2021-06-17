@@ -1,0 +1,14 @@
+#jumbotron {
+  text-align: center;
+  border: 1px solid black;
+  margin: 5em;
+  padding: 1em;
+}
+.col-4 {
+  border: 1px solid black;
+  padding: 1em;
+  text-align: center;
+}
+btn {
+  margin: 1em;
+}

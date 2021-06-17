@@ -17,37 +17,34 @@ function Player(name, turnScore, gameScore, playerTurn, playerWin) {
 }
 
 //this is a custom method- so any time a 'player' clicks submit, the random number 1 - 6 will generate 
-Player.prototype.diceRoller = function() {
-  let diceRoll = Math.floor(Math.random()*(6)+1);
-  return diceRoll
-}
-function diceRoller() {
-  let diceRoll = Math.floor(Math.random()*(6)+1);
-  return diceRoll
-}
+
+
+// function diceRoller() {
+//   let diceRoll = Math.floor(Math.random()*(6)+1);
+//   return diceRoll
+// }
 //---------------------------------------------------------------//
 Player.prototype.addScore = function() {
-  let diceRoll = diceRoller();
+  let diceRoll = Math.floor(Math.random()*(6)+1);
   if (diceRoll !== 1) { 
       this.turnScore += diceRoll;
       return this.turnScore;
-      if (this.gameScore > 100);
+    if (this.gameScore >= 100);
       this.playerWin = true;
   } else {
     return this.turnScore = 0;
     this.playerTurn = false;
-    switchTurn();
 }}
 
-// When click Hold:
-  // if (this.playerTurn = true) {
-  //   this.gameScore += this.turnScore;
-  //   switchTurn();
-  // } 
+// Player.prototype.totalGameScore
 
-Player.prototype.switchTurn = function() {
-    this.playerTurn = false
-}
+
+
+// Player.prototype.switchTurn = function() {
+//   {
+//     return this.playerTurn = false
+//   }
+// }
 
 // if (this.gameScore >= 100) {
 //       return playerWin = true;
@@ -67,22 +64,6 @@ Player.prototype.switchTurn = function() {
 
 
 // UI Logic
-//need to create event listeners for each button and both buttons (as it stands) would trigger the the branching statement below (i think)
-
-// function showBtnPrimary(playerId){
-//   const submit = pigDice.playerTurn(playerId);  
-//   const player1 = $("input#player-1").val(); //HAVE NOT MADE THESE HTML DIVS YET ex. (<div id="player1">)
-//   const player2 = $("input#player-2").val(); //HAVE NOT MADE THESE HTML DIVS YET ex. (<div id="player2">)
-//   let buttons = $("#buttons");
-//   buttons.append("<button ='btn btn-primary' id=" + + playerI/d + ">Submit</button>")
-// }
-
-// function showBtnSecondary(playerId){
-//   const submit = pigDice.playerTurn(playerId);  
-//   const player1Hold = $("input#player1-hold").val(); //HAVE NOT MADE THESE HTML DIVS YET (<div id="player2-hold">)
-//   const player2Hold = $("input#player2-hold").val(); //HAVE NOT MADE THESE HTML DIVS YET ex. (<div id="player2-hold">)
-//   let buttons = $("#buttons");
-//   buttons.append("<button ='btn btn-secondary' id=" + + playerId + ">Hold</button>")}
 
 
 
@@ -92,16 +73,46 @@ Player.prototype.switchTurn = function() {
 $(document).ready(function() {
   $("button#submit").click(function(event){
     event.preventDefault();
-    player1.addScore ()
-    alert("Player 1:" + " " + player1.turnScore)
-      if (player1.playerTurn === true)
+    if (player1.playerTurn === true) {
+      player1.addScore()
+      $("#player1Score").text(player1.turnScore)
+      if (player1.turnScore === 0) {
+        player1.playerTurn = false;
+        player2.playerTurn = true;
+      }
+    } 
+    else if (player2.playerTurn === true) {
+      player2.addScore()
+      $("#player2Score").text(player2.turnScore)
+      if (player2.turnScore === 0) {
+        player2.playerTurn = false;
+        player1.playerTurn = true;
+      }
+    }
     
-    // if (player1.playerTurn === True) {
-    //   player1.randomDiceRoller();
-    //   if (player1.diceValue === 1) {
-    //     player1.yourTurn()
-    //     player2.yourTurn()
-    //   }
+    $("#player1Score").text(player1.turnScore)
+    
+
+    $("button#hold").click(function(event){
+      event.preventDefault(); 
+      if (player1.playerTurn = true) {
+        player1.playerTurn = false
+        player2.playerTurn = true
+        player1.gameScore += player1.turnScore
+        $("#player1GameScore").text(player1.gameScore)
+      } else {
+        player2.playerTurn = false
+        player1.playerTurn = true
+        player2.gameScore += player2.turnScore
+        $("#player2GameScore").text(player2.gameScore)
+      } 
+      
   
+        
+      // if (this.playerTurn = true) {
+      //   this.gameScore += this.turnScore;
+      //    }
+      
   });
+});
 });
